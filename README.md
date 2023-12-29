@@ -1,13 +1,17 @@
-### 个贷违约预测项目
-该项目利用个人贷款违约记录数据 (data.csv，字段描述见表1)，进行个贷违约预测，评估指标有Precision、Recall，F1，ROC
+# Loan Default Prediction
+Problem Defined:
+The problem is to predict personal loan defaults using a dataset of 10,000 personal loan records.
 
-代码主要包括：
+Data Preparation:
+- Started with 10,000 personal loan records.
+- Performed data cleaning to handle missing values through imputation and deletion, resulting in a final count of 9,997 credit records.
+- Applied feature engineering and encoding for discrete variables to transform the original 21 independent variables into 70 variables through discretization.
 
-数据预处理：通过特征工程扩充变量
+Data Process:
+- Split the data into test and training sets.
+- Used Sequential Backward Selection (SBS) and Recursive Feature Elimination (RFE) to perform dimensionality reduction on a subset of the training sample, ultimately retaining 23 independent variables. The overlap of independent variables selected by the two methods was 65%.
+- Fitted the subset of the training sample using three types of models: Logistic Regression, Bayesian, and Decision Tree.
+- Performed parameter tuning on the remaining samples in the training set.
 
-数据集划分：分为测试集和训练集
-
-模型方法实践：重点实践决策树、逻辑回归和朴素贝叶斯三个算法，进行模型效果的比较，最后的预测效果Precision接近0.7
-
-
-该.ipynb文件包括文字叙述、代码和运行结果。
+Data Analysis:
+- Used the trained models to predict the default situation in the test samples. It was found that using the Bayesian model to predict the results under the condition of unscreened independent variables was the best, with the optimal recall rate reaching 0.932 and a low precision of 0.414.
